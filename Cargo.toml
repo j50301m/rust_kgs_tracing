@@ -1,0 +1,35 @@
+[package]
+name = "kgs-tracing"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+# for web framework
+actix-web = "4"
+futures-util = "0.3"
+once_cell = "1.19.0" # for lazy static
+tokio = { version = "1.37", features = ["full"] }
+axum = { version = "0.6", features = [ "http2", "json" ] } # for build tower layer
+tonic = "0.11.0"
+hyper = "1.3.1"
+
+# for tracing
+opentelemetry ={ version = "0.22" ,features = ["metrics","otel_unstable"]}
+tracing-opentelemetry = { version = "0.23" }
+tracing = "0.1.19"
+tracing-subscriber = { version = "0.3", features = ["registry", "env-filter"] }
+tracing-actix-web = "0.7.10"
+opentelemetry-otlp = {version= "0.15.0",features = ["tonic", "metrics", "logs"]}
+opentelemetry_sdk = { version = "0.22.1",features = ["logs","rt-tokio"] }
+tracing-loki = "0.2.4"
+log = "0.4.21" # only for db_manager init
+tower = "0.4.13"
+tower-http = { version = "0.4", features = [ "trace" ] }
+
+# utility
+ansi_term = "0.12.1" # for colored logs
+chrono = { version = "0.4.31", features = ["serde"] } # for time
+serde = { version = "1.0.188", features = ["derive"] } # for serialization
+serde_json = { version = "1.0.107" } # for json
+sysinfo = "0.30.12" # for system info
